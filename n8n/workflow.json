@@ -1,0 +1,653 @@
+{
+  "name": "agent",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "hours",
+              "hoursInterval": 12
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        -540,
+        -160
+      ],
+      "id": "e5d25e8a-986b-4fa5-af58-7509c61cfbf0",
+      "name": "Trigger: Check RSS every X min"
+    },
+    {
+      "parameters": {
+        "url": "https://ir.thomsonreuters.com/rss/news-releases.xml?items=15",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.rssFeedRead",
+      "typeVersion": 1.2,
+      "position": [
+        -320,
+        -160
+      ],
+      "id": "b61096fd-46b2-41bd-883c-778af88fc507",
+      "name": "RSS: War News Feed"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://f3a5fdb0d5da.ngrok-free.app/classify",
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "text",
+              "value": "={{ $json.title + ' ' + $json.content}}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -100,
+        -160
+      ],
+      "id": "9fc87799-590b-4022-b913-9ce46d316ac7",
+      "name": "Classify Event Tag"
+    },
+    {
+      "parameters": {
+        "chatId": "7807262429",
+        "text": "=🚨 ALARM: Nowy artykuł sklasyfikowany jako {{ $('Classify Event Tag').item.json.tag }}!  \n\n📌 Tytuł: {{ $('RSS: War News Feed').item.json.title }}\n🔗 Link: {{ $('RSS: War News Feed').item.json.link }}",
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        320,
+        -400
+      ],
+      "id": "9214136c-5be5-46ae-aaca-34f2008a0616",
+      "name": "Telegram Alert",
+      "webhookId": "fde9deba-745d-481f-831c-e70397c28a74",
+      "credentials": {
+        "telegramApi": {
+          "id": "nxG096nkjS0Syp9z",
+          "name": "Telegram account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "ac8fab9d-4e4a-4a4a-9b82-397d72bdd148",
+              "leftValue": "={{ $json.id }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "notEmpty",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        500,
+        -180
+      ],
+      "id": "93736298-86f7-41ab-b2ee-ae656f1f0786",
+      "name": "File exists check"
+    },
+    {
+      "parameters": {
+        "resource": "fileFolder",
+        "queryString": "war_news",
+        "filter": {},
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        320,
+        -180
+      ],
+      "id": "06be16d9-ce0c-460a-b28d-4e8417998eb3",
+      "name": "Find file",
+      "alwaysOutputData": true,
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "YC4raTt17l4McPpw",
+          "name": "Google Drive account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "ac8fab9d-4e4a-4a4a-9b82-397d72bdd148",
+              "leftValue": "={{ $json.tag }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "exists",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        100,
+        -160
+      ],
+      "id": "118424f0-11ba-4fe6-bf71-8f65e565963a",
+      "name": "Classification returned?"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "ac8fab9d-4e4a-4a4a-9b82-397d72bdd148",
+              "leftValue": "=[\"attack\", \"escalation\", \"incident\"].includes({{ $json.tag }})\n",
+              "rightValue": "=attack  sanction",
+              "operator": {
+                "type": "string",
+                "operation": "contains"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        100,
+        -380
+      ],
+      "id": "1faf13fe-7b9f-454a-bcbd-9789a05587d8",
+      "name": "Tag is Alert-Worthy?",
+      "executeOnce": false
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "1vJVsWbcXqk1jnzw8deFAZFIUhnPkKiaMdjDPCsrIOdI",
+          "mode": "list",
+          "cachedResultName": "war_news",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1vJVsWbcXqk1jnzw8deFAZFIUhnPkKiaMdjDPCsrIOdI/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 1575723028,
+          "mode": "list",
+          "cachedResultName": "logs",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1vJVsWbcXqk1jnzw8deFAZFIUhnPkKiaMdjDPCsrIOdI/edit#gid=1575723028"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "timestamp": "={{ $('RSS: War News Feed').item.json.isoDate }}",
+            "source": "={{ $('RSS: War News Feed').item.json.creator }}",
+            "title": "={{ $('RSS: War News Feed').item.json.title }}",
+            "content": "={{ $('RSS: War News Feed').item.json.content }}",
+            "tag": "={{ $('Classify Event Tag').item.json.tag }}",
+            "url": "={{ $('RSS: War News Feed').item.json.link }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "timestamp",
+              "displayName": "timestamp",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "source",
+              "displayName": "source",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "title",
+              "displayName": "title",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "content",
+              "displayName": "content",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "tag",
+              "displayName": "tag",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "url",
+              "displayName": "url",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.6,
+      "position": [
+        720,
+        -240
+      ],
+      "id": "c3e0bbbc-02c3-4cf2-8a44-afcf803ad278",
+      "name": "Append row to existing file",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "plbV2x3HozaiKxl1",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "spreadsheet",
+        "title": "war_news",
+        "sheetsUi": {
+          "sheetValues": [
+            {
+              "title": "logs"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.6,
+      "position": [
+        720,
+        -60
+      ],
+      "id": "c299b195-d309-453e-9b2b-503de8699d8c",
+      "name": "Create new spreadsheet",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "plbV2x3HozaiKxl1",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "move",
+        "fileId": {
+          "__rl": true,
+          "value": "1vJVsWbcXqk1jnzw8deFAZFIUhnPkKiaMdjDPCsrIOdI",
+          "mode": "list",
+          "cachedResultName": "war_news",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1vJVsWbcXqk1jnzw8deFAZFIUhnPkKiaMdjDPCsrIOdI/edit?usp=drivesdk"
+        },
+        "driveId": {
+          "__rl": true,
+          "value": "My Drive",
+          "mode": "list",
+          "cachedResultName": "My Drive",
+          "cachedResultUrl": "https://drive.google.com/drive/my-drive"
+        },
+        "folderId": {
+          "__rl": true,
+          "value": "1DW1VzheWS0QhYEr8y4hjPxyewCsyKh9h",
+          "mode": "list",
+          "cachedResultName": "n8n",
+          "cachedResultUrl": "https://drive.google.com/drive/folders/1DW1VzheWS0QhYEr8y4hjPxyewCsyKh9h"
+        }
+      },
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        940,
+        -240
+      ],
+      "id": "18ce820b-b662-4aaf-8d78-ff03e47f37fe",
+      "name": "Move file to folder",
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "YC4raTt17l4McPpw",
+          "name": "Google Drive account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "1svpLHq80ARjR6zTSvcflEf6suPhTecI7gUL0e23sfjM",
+          "mode": "list",
+          "cachedResultName": "war_news",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1svpLHq80ARjR6zTSvcflEf6suPhTecI7gUL0e23sfjM/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "logs",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1svpLHq80ARjR6zTSvcflEf6suPhTecI7gUL0e23sfjM/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "tag": "={{ $('Classify Event Tag').item.json.tag }}",
+            "title": "={{ $('RSS: War News Feed').item.json.title }}",
+            "content": "={{ $('RSS: War News Feed').item.json.content }}",
+            "url": "={{ $('RSS: War News Feed').item.json.link }}",
+            "timestamp": "={{ $('RSS: War News Feed').item.json.isoDate }}",
+            "source": "={{ $('RSS: War News Feed').item.json.creator }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "timestamp",
+              "displayName": "timestamp",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "source",
+              "displayName": "source",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "title",
+              "displayName": "title",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "content",
+              "displayName": "content",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "tag",
+              "displayName": "tag",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "url",
+              "displayName": "url",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.6,
+      "position": [
+        940,
+        -60
+      ],
+      "id": "7a6ebc81-e0d3-4c4a-ab18-da5bc7822275",
+      "name": "Add header row to sheet",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "plbV2x3HozaiKxl1",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://f3a5fdb0d5da.ngrok-free.app/analyze",
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "=title",
+              "value": "={{ $json.title }}"
+            },
+            {
+              "name": "content",
+              "value": "={{ $json.content }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -80,
+        120
+      ],
+      "id": "adbbb1d5-a742-44bc-b3b4-b05fbe4d98e6",
+      "name": "Classify Event Tag1"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Trigger: Check RSS every X min": {
+      "main": [
+        [
+          {
+            "node": "RSS: War News Feed",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "RSS: War News Feed": {
+      "main": [
+        [
+          {
+            "node": "Classify Event Tag",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Classify Event Tag1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Classify Event Tag": {
+      "main": [
+        [
+          {
+            "node": "Classification returned?",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Tag is Alert-Worthy?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "File exists check": {
+      "main": [
+        [
+          {
+            "node": "Append row to existing file",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Create new spreadsheet",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Find file": {
+      "main": [
+        [
+          {
+            "node": "File exists check",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Classification returned?": {
+      "main": [
+        [
+          {
+            "node": "Find file",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Tag is Alert-Worthy?": {
+      "main": [
+        [
+          {
+            "node": "Telegram Alert",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Append row to existing file": {
+      "main": [
+        [
+          {
+            "node": "Move file to folder",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Create new spreadsheet": {
+      "main": [
+        [
+          {
+            "node": "Add header row to sheet",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "saveDataErrorExecution": "all",
+    "saveDataSuccessExecution": "all",
+    "callerPolicy": "workflowsFromSameOwner"
+  },
+  "versionId": "3cab5701-b396-46c2-adec-0c6d8f6e8902",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "ab6870dad7b8f5ddc4fb46b3ef0d023e16229325eabdbf9e3389d62f5ea96f06"
+  },
+  "id": "AiLDSYxPjf5TSGxb",
+  "tags": []
+}
