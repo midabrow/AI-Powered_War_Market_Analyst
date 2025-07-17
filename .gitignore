@@ -37,3 +37,6 @@ Thumbs.db
 
 # === VS Code ===
 .vscode/
+
+# pliki konfiguracyjne
+.env
