@@ -1,36 +1,42 @@
 import requests
+from typing import Optional
+from dotenv import load_dotenv
+import os
+
+load_dotenv()
+API_KEY = os.getenv("OPENROUTER_API_KEY")
+OPENROUTER_URL = "https://openrouter.ai/api/v1/chat/completions"
 
 
-
-class LLMClient:
+def analyze_event(title: str, sector: str) -> Optional[str]:
     """
-    Sends prompts to an LLM API (e.g., OpenRouter, OpenAI, etc.) and returns the response.
+    Sends prompt to LLM and returns response about economic impact.
     """
-    def __init__(self, api_key: str, model: str = "openrouter/mistral-7b"):
-        self.api_key = api_key
-        self.model = model
-        self.url = "https://openrouter.ai/api/v1/chat/completions"
+    prompt = (
+        f"Event: {title}\n"
+        f"How could this event affect the {sector} sector?\n"
+        f"Give a short economic impact analysis in plain English."
+    )
 
-    def query(self, event_text: str, sector: str) -> str:
-        """
-        Generate LLM analysis based on event text and market sector.
-        """
-        prompt = (
-            f"How might the following event affect the {sector} sector?\n\n"
-            f"{event_text}\n\n"
-            f"Provide a concise, expert-level analysis."
-        )
-        headers = {
-            "Authorization": f"Bearer {self.api_key}",
-            "Content-Type": "application/json"
-        }
-        payload = {
-            "model": self.model,
-            "messages": [
-                {"role": "user", "content": prompt}
-            ]
-        }
+    headers = {
+        "Authorization": f"Bearer {API_KEY}",
+        "Content-Type": "application/json",
+    }
 
-        response = requests.post(self.url, json=payload, headers=headers)
+    payload = {
+        "model": "mistralai/mixtral-8x7b-instruct",
+        "messages": [
+            {"role": "system", "content": "You are an expert economic analyst."},
+            {"role": "user", "content": prompt}
+        ],
+        "max_tokens": 200,
+        "temperature": 0.7,
+    }
+
+    try:
+        response = requests.post(OPENROUTER_URL, headers=headers, json=payload)
         response.raise_for_status()
-        return response.json()["choices"][0]["message"]["content"]
+        return response.json()['choices'][0]['message']['content'].strip()
+    except Exception as e:
+        print(f"[LLM ERROR] {e}")
+        return None

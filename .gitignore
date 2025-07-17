@@ -1,1 +1,39 @@
+# === Python cache ===
+__pycache__/
+*.py[cod]
+*.so
+
+# === Model checkpoints ===
+/data/transformer_model/
+!data/transformer_model/README.md  # zostaw plik info jeśli chcesz
+
+# === Pliki modeli HF ===
+*.safetensors
+*.bin
+
+# === Tokenizer / vocab ===
+vocab.txt
+tokenizer_config.json
+tokenizer.json
+special_tokens_map.json
+
+# === HuggingFace training artefacts ===
+training_args.bin
+runs/
+
+# === Dane wyjściowe i tymczasowe ===
 *.csv
+*.json
+*.log
+*.tmp
+*.bak
+
+# === Notebook checkpoints ===
+.ipynb_checkpoints/
+
+# === Systemowe ===
+.DS_Store
+Thumbs.db
+
+# === VS Code ===
+.vscode/

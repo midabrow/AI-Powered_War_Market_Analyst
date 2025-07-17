@@ -1,63 +1,18 @@
-# src/mapping/sector_mapper.py
-
-# from typing import Optional
-
-# class SectorMapper:
-#     def __init__(self):
-#         self.keyword_to_sector = {
-#             "missile": "defense",
-#             "drone": "defense",
-#             "sanction": "finance",
-#             "oil": "energy",
-#             "gas": "energy",
-#             "inflation": "finance",
-#             "stock": "finance",
-#             "AI": "technology",
-#             "cyber": "technology",
-#             "wheat": "agriculture",
-#             "grain": "agriculture",
-#             "military": "defense",
-#             "tank": "defense",
-#             "explosion": "defense",
-#             "nuclear": "energy",
-#             "internet": "technology",
-#             "export": "trade",
-#             "import": "trade",
-#             "currency": "finance",
-#         }
-
-
-
-#     def map_to_sector(self, text: str) -> Optional[str]:
-#         text = text.lower()
-#         for keyword, sector in self.keyword_to_sector.items():
-#             if keyword in text:
-#                 return sector
-#         return "other"
-
-
-
-from typing import List
-
-class SectorMapper:
+def map_to_sector(title: str, tag: str) -> str:
     """
-    Maps a given event (title + content) to a market sector.
+    Maps a classified event to an economic sector.
     """
-    def __init__(self):
-        self.mapping = {
-            "oil": ["oil", "gas", "OPEC", "barrel", "crude"],
-            "defense": ["missile", "strike", "drone", "military", "army", "weapon"],
-            "tech": ["chip", "semiconductor", "AI", "cyber", "data", "cloud"],
-            "finance": ["bank", "interest rate", "inflation", "Fed", "ECB"],
-            "shipping": ["port", "canal", "logistics", "cargo", "shipping"],
-            "energy": ["power", "nuclear", "reactor", "energy grid", "renewable"]
-        }
 
-    def map_to_sector(self, text: str) -> List[str]:
-        """
-        Returns a list of relevant sectors based on keyword matching.
-        """
-        text_lower = text.lower()
-        matched_sectors = [sector for sector, keywords in self.mapping.items()
-                           if any(keyword in text_lower for keyword in keywords)]
-        return matched_sectors or ["other"]
+    title = title.lower()
+    tag = tag.lower()
+
+    if "oil" in title or "gas" in title or "iran" in title or "saudi" in title or tag == "sanction":
+        return "energy"
+    if "ukraine" in title or "russia" in title or "army" in title or tag == "attack":
+        return "defense"
+    if "chip" in title or "semiconductor" in title or "china" in title or tag == "supply":
+        return "tech"
+    if "inflation" in title or "market" in title or tag == "incident":
+        return "finance"
+
+    return "global"
