@@ -5,7 +5,7 @@ __pycache__/
 
 # === Model checkpoints ===
 /data/transformer_model/
-!data/transformer_model/README.md  # zostaw plik info jeśli chcesz
+!data/transformer_model/README.md 
 
 # === Pliki modeli HF ===
 *.safetensors

@@ -29,6 +29,7 @@ LABELS = model.config.id2label
 class TextInput(BaseModel):
     title: str  
     summary: str
+    link: str 
 
 
 @app.post("/classify")
@@ -47,7 +48,7 @@ def classify_text(input_data: TextInput) -> dict:
         tag = LABELS[pred_id]
         confidence = probs[pred_id].item()
 
-    return {"tag": tag, "confidence": round(confidence, 4)}
+    return {"tag": tag, "confidence": round(confidence, 4), "title": input_data.title, "summary": input_data.summary, "link": input_data.link}
     
 ##############
 
