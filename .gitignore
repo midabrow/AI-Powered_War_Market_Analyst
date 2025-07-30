@@ -24,7 +24,7 @@ runs/
 # === Dane wyjściowe i tymczasowe ===
 *.csv
 *.json
-!n8n/WorkflowLastVesrion.json
+!n8n/*.json
 *.log
 *.tmp
 *.bak

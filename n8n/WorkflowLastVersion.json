@@ -1,0 +1,1274 @@
+{
+  "name": "My workflow",
+  "nodes": [
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "http://api:8000/classify",
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "title",
+              "value": "={{ $json.title }}"
+            },
+            {
+              "name": "summary",
+              "value": "={{ $json.summary }}"
+            },
+            {
+              "name": "link",
+              "value": "={{ $json.link }}"
+            }
+          ]
+        },
+        "options": {
+          "timeout": 60000
+        }
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -592,
+        624
+      ],
+      "id": "099feb50-3b99-49f7-9202-3e7315f233a0",
+      "name": "Classify Event Tag",
+      "executeOnce": false
+    },
+    {
+      "parameters": {
+        "content": "# INPUT: RSS Feeds & Collection\n",
+        "height": 400,
+        "width": 880,
+        "color": 5
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -1552,
+        544
+      ],
+      "typeVersion": 1,
+      "id": "b79ab12b-b9d0-41ac-8c5a-2629a5eeaa0d",
+      "name": "Sticky Note"
+    },
+    {
+      "parameters": {
+        "content": "# STEP 1: Classification & Risk Filtering\n",
+        "height": 400,
+        "width": 640,
+        "color": 2
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -656,
+        544
+      ],
+      "typeVersion": 1,
+      "id": "e2679e76-5b46-4cf7-b930-da7235096760",
+      "name": "Sticky Note1"
+    },
+    {
+      "parameters": {
+        "content": "# STEP 2: LLM Event Insight & Alerting\n",
+        "height": 352,
+        "width": 624,
+        "color": 7
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        0,
+        176
+      ],
+      "typeVersion": 1,
+      "id": "e7895593-0e28-415f-bef3-d1857afc4131",
+      "name": "Sticky Note2"
+    },
+    {
+      "parameters": {
+        "content": "# STEP 3: Logging to Google Sheets\n",
+        "height": 400,
+        "width": 1024,
+        "color": 4
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        0,
+        544
+      ],
+      "typeVersion": 1,
+      "id": "dc938310-ccf2-444d-98c2-958ce68c101a",
+      "name": "Sticky Note3"
+    },
+    {
+      "parameters": {
+        "content": "### Replace Ngrok URL",
+        "height": 80,
+        "width": 160,
+        "color": 3
+      },
+      "id": "f3e85d3d-5365-43a9-a273-e3d9c23a8d48",
+      "name": "Sticky Note19",
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -1344,
+        816
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "content": "### Replace Ngrok URL",
+        "height": 80,
+        "width": 160,
+        "color": 3
+      },
+      "id": "66cd61a3-b182-46ac-9648-15d4ae0754b8",
+      "name": "Sticky Note20",
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -608,
+        816
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "content": "### Replace Ngrok URL",
+        "height": 80,
+        "width": 192,
+        "color": 3
+      },
+      "id": "5eed7bfc-7b97-4f95-b4fd-d2ffa117e0bc",
+      "name": "Sticky Note21",
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        96,
+        240
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "content": "# COMMAND CENTER: Telegram Bot",
+        "height": 560,
+        "width": 1680
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -656,
+        960
+      ],
+      "typeVersion": 1,
+      "id": "439f3303-0700-4b54-8d71-9f7b7f949425",
+      "name": "Sticky Note4"
+    },
+    {
+      "parameters": {
+        "functionCode": "return [\n  {\n    json: {\n      tag: \"military\"\n    }\n  },\n  {\n    json: {\n      tag: \"global\"\n    }\n  },\n  {\n    json: {\n      tag: \"military\"\n    }\n  }\n];\n"
+      },
+      "name": "Create Example Data1",
+      "type": "n8n-nodes-base.function",
+      "typeVersion": 1,
+      "position": [
+        -896,
+        1872
+      ],
+      "id": "64fa2133-d4dc-486c-adc7-42a8b5586919"
+    },
+    {
+      "parameters": {
+        "functionCode": "return [\n  {\n    json: {\n      tag: \"attack\"\n    }\n  },\n  {\n    json: {\n      tag: \"other\"\n    }\n  },\n  {\n    json: {\n      tag: \"attack\"\n    }\n  }\n];\n"
+      },
+      "name": "Classify Event Tag1",
+      "type": "n8n-nodes-base.function",
+      "typeVersion": 1,
+      "position": [
+        -1120,
+        1872
+      ],
+      "id": "9958838b-88ce-4c46-aa6d-ee663dad3722"
+    },
+    {
+      "parameters": {
+        "content": "# MAINTENANCE: Refresh RAG Index from Google Sheets",
+        "height": 256,
+        "width": 880,
+        "color": 6
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -1552,
+        960
+      ],
+      "typeVersion": 1,
+      "id": "f448cd45-16f8-41c7-b063-847df3e3093c",
+      "name": "Sticky Note5"
+    },
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "hours",
+              "hoursInterval": 5
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        -1488,
+        640
+      ],
+      "id": "10b3e11f-934a-49cd-b2e7-9956320b4351",
+      "name": "Schedule: Every 5h Check"
+    },
+    {
+      "parameters": {
+        "url": "http://api:8000/rss/fetch",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -1312,
+        640
+      ],
+      "id": "4e831123-44cf-4995-b32f-01cb119a7a25",
+      "name": "Read RSS Feed"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        -1104,
+        640
+      ],
+      "id": "512fad7e-8498-43ad-9c0c-a45efd4e59bc",
+      "name": "Loop: Each News Item"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.noOp",
+      "name": "Process Single Article",
+      "typeVersion": 1,
+      "position": [
+        -912,
+        656
+      ],
+      "id": "fa11212b-9eb4-4eb8-9738-34f15aa5d676"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Loop over input items and add a new field called 'myNewField' to the JSON of each one\n// for (const item of $input.all()) {\n//   item.json.myNewField = 1;\n// }\n\n// return $input.all();\n\n\nconst output = [];\n\nfor (const item of $('Classify Event Tag').all()) {\n  const tag = item.json.tag.toLowerCase();\n\n  if ([\"attack\", \"sanction\"].includes(tag)) {\n    const enriched = {\n      tag: tag,\n      confidence: item.json.confidence,\n      title: item.json.title,\n      summary: item.json.summary,\n      link: item.json.link\n    };\n\n    output.push({ json: enriched });\n  }\n}\n\nreturn output;\n\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -400,
+        624
+      ],
+      "id": "d1bf2111-383a-4c8d-809c-1e0ae89f9077",
+      "name": "Filter: Is Alert-Worthy?"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "http://api:8000/map_sector",
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "title",
+              "value": "={{ $json.title }}"
+            },
+            {
+              "name": "tag",
+              "value": "={{ $json.tag }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -208,
+        624
+      ],
+      "id": "646d7163-0065-4b4d-80cc-45a2ff30a197",
+      "name": "Classify Affected Sector",
+      "executeOnce": false
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "http://api:8000/analyze",
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "title",
+              "value": "={{ $('Filter: Is Alert-Worthy?').item.json.title }}"
+            },
+            {
+              "name": "sector",
+              "value": "={{ $json.sector }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        128,
+        336
+      ],
+      "id": "e1cd1574-5a23-4e5d-a85c-1ec4da2871c2",
+      "name": "LLM: Analyze Event",
+      "executeOnce": false
+    },
+    {
+      "parameters": {
+        "chatId": "7807262429",
+        "text": "=🚨 ALARM: New article classified as {{ $('Filter: Is Alert-Worthy?').item.json.tag }}!  \n\n📌 Title: {{ $('Filter: Is Alert-Worthy?').item.json.title }}\n🔗 Link: {{ $('Filter: Is Alert-Worthy?').item.json.link }}\n📊 Sector: {{ $('Classify Affected Sector').item.json.sector }}\n🧠 LLM Analysis: {{ $('LLM: Analyze Event').item.json.analysis }}",
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        336,
+        336
+      ],
+      "id": "c3e50863-6c14-4fe9-8c79-df850d9afa30",
+      "name": "Send Telegram Alert",
+      "webhookId": "fde9deba-745d-481f-831c-e70397c28a74",
+      "credentials": {
+        "telegramApi": {
+          "id": "SbidvwSqVpshZJge",
+          "name": "Telegram account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "fileFolder",
+        "queryString": "war_news",
+        "filter": {},
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        176,
+        640
+      ],
+      "id": "affec0d7-f311-4943-87e4-74dba03730c7",
+      "name": "Find Sheet File",
+      "alwaysOutputData": true,
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "gsDlL1JO3OoQPmmQ",
+          "name": "Google Drive account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "ac8fab9d-4e4a-4a4a-9b82-397d72bdd148",
+              "leftValue": "={{ $json.id }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "notEmpty",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        352,
+        640
+      ],
+      "id": "df2a2ae2-9b9b-45e5-9b7a-f04119d15321",
+      "name": "Check if Sheet Exists"
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "1vJVsWbcXqk1jnzw8deFAZFIUhnPkKiaMdjDPCsrIOdI",
+          "mode": "list",
+          "cachedResultName": "war_news",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1vJVsWbcXqk1jnzw8deFAZFIUhnPkKiaMdjDPCsrIOdI/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 1575723028,
+          "mode": "list",
+          "cachedResultName": "logs",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1vJVsWbcXqk1jnzw8deFAZFIUhnPkKiaMdjDPCsrIOdI/edit#gid=1575723028"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "title": "={{ $('Filter: Is Alert-Worthy?').item.json.title }}",
+            "content": "={{ $('Filter: Is Alert-Worthy?').item.json.summary }}",
+            "tag": "={{ $('Filter: Is Alert-Worthy?').item.json.tag }}",
+            "url": "={{ $('Filter: Is Alert-Worthy?').item.json.link }}",
+            "analysis": "={{ $('LLM: Analyze Event').item.json.analysis }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "title",
+              "displayName": "title",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "content",
+              "displayName": "content",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "tag",
+              "displayName": "tag",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "analysis",
+              "displayName": "analysis",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "url",
+              "displayName": "url",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.6,
+      "position": [
+        592,
+        624
+      ],
+      "id": "dfef850b-3c56-4803-9c24-e4c360d4da9e",
+      "name": "Append Row to Sheet",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "tZohwyAhpHyKPSJn",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "spreadsheet",
+        "title": "war_news",
+        "sheetsUi": {
+          "sheetValues": [
+            {
+              "title": "logs"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.6,
+      "position": [
+        592,
+        800
+      ],
+      "id": "8738124d-1fdc-43da-8a86-521f350ef3bc",
+      "name": "Create Sheet if Missing",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "tZohwyAhpHyKPSJn",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "1vJVsWbcXqk1jnzw8deFAZFIUhnPkKiaMdjDPCsrIOdI",
+          "mode": "list",
+          "cachedResultName": "war_news",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1vJVsWbcXqk1jnzw8deFAZFIUhnPkKiaMdjDPCsrIOdI/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 1575723028,
+          "mode": "list",
+          "cachedResultName": "logs",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1vJVsWbcXqk1jnzw8deFAZFIUhnPkKiaMdjDPCsrIOdI/edit#gid=1575723028"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "title": "={{ $('Filter: Is Alert-Worthy?').item.json.title }}",
+            "content": "={{ $('Filter: Is Alert-Worthy?').item.json.summary }}",
+            "tag": "={{ $('Filter: Is Alert-Worthy?').item.json.tag }}",
+            "url": "={{ $('Filter: Is Alert-Worthy?').item.json.link }}",
+            "analysis": "={{ $('LLM: Analyze Event').item.json.analysis }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "title",
+              "displayName": "title",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "content",
+              "displayName": "content",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "tag",
+              "displayName": "tag",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "analysis",
+              "displayName": "analysis",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "url",
+              "displayName": "url",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.6,
+      "position": [
+        800,
+        800
+      ],
+      "id": "eea2626d-d57a-4b97-a7d1-09f48358df7e",
+      "name": "Append Row",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "tZohwyAhpHyKPSJn",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "updates": [
+          "message"
+        ],
+        "additionalFields": {
+          "chatIds": "7807262429"
+        }
+      },
+      "type": "n8n-nodes-base.telegramTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        -496,
+        1136
+      ],
+      "id": "5683abdb-702f-45d4-9bd9-164f80912708",
+      "name": "Telegram: Listen for Commands",
+      "webhookId": "cc7c52a0-a370-4165-8576-86a62e96e5e9",
+      "credentials": {
+        "telegramApi": {
+          "id": "SbidvwSqVpshZJge",
+          "name": "Telegram account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "language": "python",
+        "pythonCode": "results = []\n\nfor item in _input.all():\n    message = item['json'].get('message', {}).get('text', '')\n\n    if message.startswith(\"/ask\"):\n        results.append({\n            \"json\": {\n                \"command\": \"ask\",\n                \"question\": message[5:]  # obcina \"/ask \"\n            }\n        })\n    elif message == \"/last\":\n        results.append({\n            \"json\": {\n                \"command\": \"last\"\n            }\n        })\n    else:\n        results.append({\n            \"json\": {\n                \"command\": \"unknown\"\n            }\n        })\n\nreturn results\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -304,
+        1136
+      ],
+      "id": "8cf04975-8155-46e0-8680-4142de0c92fe",
+      "name": "Parse Telegram Command"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "9519356d-d46a-4a23-8a96-f46402fa6206",
+              "leftValue": "={{ $json.command }}",
+              "rightValue": "ask",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        80,
+        1040
+      ],
+      "id": "f74d6bbf-97a5-4951-8f98-03d59212a817",
+      "name": "IF /ask Command"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "http://api:8000/rag/ask",
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "question",
+              "value": "={{ $('Parse Telegram Command').item.json.question }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        288,
+        1024
+      ],
+      "id": "38674d88-c391-4b9b-befb-c99e6e8ef399",
+      "name": "LLM Ask → /rag/ask"
+    },
+    {
+      "parameters": {
+        "chatId": "7807262429",
+        "text": "={{ $json.answer }}",
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        496,
+        1024
+      ],
+      "id": "b4439426-d263-4018-9f28-ca06583ad90a",
+      "name": "Reply with Answer",
+      "webhookId": "c8901973-e7eb-4068-beda-a4532ef98d4e",
+      "credentials": {
+        "telegramApi": {
+          "id": "SbidvwSqVpshZJge",
+          "name": "Telegram account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "9519356d-d46a-4a23-8a96-f46402fa6206",
+              "leftValue": "={{ $json.command }}",
+              "rightValue": "last",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        80,
+        1200
+      ],
+      "id": "2769d10a-7e0f-4ec6-bf81-4a145b204abd",
+      "name": "IF /last Command"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "9519356d-d46a-4a23-8a96-f46402fa6206",
+              "leftValue": "={{ $json.command }}",
+              "rightValue": "unknown",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        80,
+        1360
+      ],
+      "id": "a4acd739-66f2-423e-a960-d9a08a7e1dc0",
+      "name": "IF Unknown Command"
+    },
+    {
+      "parameters": {
+        "chatId": "7807262429",
+        "text": "Command not recognized. Available: /ask, /last",
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        304,
+        1344
+      ],
+      "id": "7615eb82-7855-4bfd-b7d4-0a93e07d6e0f",
+      "name": "Reply: Unknown Command",
+      "webhookId": "c8901973-e7eb-4068-beda-a4532ef98d4e",
+      "credentials": {
+        "telegramApi": {
+          "id": "SbidvwSqVpshZJge",
+          "name": "Telegram account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1vJVsWbcXqk1jnzw8deFAZFIUhnPkKiaMdjDPCsrIOdI",
+          "mode": "list",
+          "cachedResultName": "war_news",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1vJVsWbcXqk1jnzw8deFAZFIUhnPkKiaMdjDPCsrIOdI/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 1575723028,
+          "mode": "list",
+          "cachedResultName": "logs",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1vJVsWbcXqk1jnzw8deFAZFIUhnPkKiaMdjDPCsrIOdI/edit#gid=1575723028"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.6,
+      "position": [
+        304,
+        1184
+      ],
+      "id": "dd1c7369-1cd5-4191-b286-fb5f6cbf01b7",
+      "name": "Fetch Last Logged Event",
+      "alwaysOutputData": true,
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "tZohwyAhpHyKPSJn",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "language": "python",
+        "pythonCode": "results = []\n\nfor item in _input.all():\n    message = item['json'].get('message', {}).get('text', '')\n\n    if message.startswith(\"/ask\"):\n        results.append({\n            \"json\": {\n                \"command\": \"ask\",\n                \"question\": message[5:]  # obcina \"/ask \"\n            }\n        })\n    elif message == \"/last\":\n        results.append({\n            \"json\": {\n                \"command\": \"last\"\n            }\n        })\n    elif message.startswith(\"/search\"):\n        results.append({\n            \"json\": {\n                \"command\": \"search\",\n                \"keyword\": message[8:]  # obcina \"/search \"\n            }\n        })\n    else:\n        results.append({\n            \"json\": {\n                \"command\": \"unknown\"\n            }\n        })\n\nreturn results\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        496,
+        1184
+      ],
+      "id": "93d77ba0-3971-424d-9fb5-c0d1fb48a5c1",
+      "name": "Format Event Summary"
+    },
+    {
+      "parameters": {
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        672,
+        1184
+      ],
+      "id": "45e83afa-7ac6-4bc8-9ba8-45081060c79e",
+      "name": "Reply with Last Event",
+      "webhookId": "00a54b34-7be5-4500-8081-596ed086376e",
+      "credentials": {
+        "telegramApi": {
+          "id": "SbidvwSqVpshZJge",
+          "name": "Telegram account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "hours",
+              "hoursInterval": 6
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        -1392,
+        1040
+      ],
+      "id": "6ddfa2f3-6702-4de3-b215-a1d0b49d86ad",
+      "name": "Schedule: Refresh Index (Every 6h)"
+    },
+    {
+      "parameters": {
+        "operation": "download",
+        "fileId": {
+          "__rl": true,
+          "value": "1vJVsWbcXqk1jnzw8deFAZFIUhnPkKiaMdjDPCsrIOdI",
+          "mode": "list",
+          "cachedResultName": "war_news",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1vJVsWbcXqk1jnzw8deFAZFIUhnPkKiaMdjDPCsrIOdI/edit?usp=drivesdk"
+        },
+        "options": {
+          "googleFileConversion": {
+            "conversion": {}
+          }
+        }
+      },
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        -1200,
+        1040
+      ],
+      "id": "b68a6efa-49e5-4104-b0f8-597652f52338",
+      "name": "Get Latest Data from Google Drive",
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "gsDlL1JO3OoQPmmQ",
+          "name": "Google Drive account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "http://api:8000/rag/build-index",
+        "sendBody": true,
+        "contentType": "multipart-form-data",
+        "bodyParameters": {
+          "parameters": [
+            {
+              "parameterType": "formBinaryData",
+              "name": "file",
+              "inputDataFieldName": "data"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -992,
+        1040
+      ],
+      "id": "89982bf0-38d9-4967-89f1-5af5090219dd",
+      "name": "Rebuild RAG Index"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Classify Event Tag": {
+      "main": [
+        [
+          {
+            "node": "Filter: Is Alert-Worthy?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Classify Event Tag1": {
+      "main": [
+        [
+          {
+            "node": "Create Example Data1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Schedule: Every 5h Check": {
+      "main": [
+        [
+          {
+            "node": "Read RSS Feed",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Read RSS Feed": {
+      "main": [
+        [
+          {
+            "node": "Loop: Each News Item",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop: Each News Item": {
+      "main": [
+        [
+          {
+            "node": "Classify Event Tag",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Process Single Article",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Process Single Article": {
+      "main": [
+        [
+          {
+            "node": "Loop: Each News Item",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Filter: Is Alert-Worthy?": {
+      "main": [
+        [
+          {
+            "node": "Classify Affected Sector",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Classify Affected Sector": {
+      "main": [
+        [
+          {
+            "node": "LLM: Analyze Event",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "LLM: Analyze Event": {
+      "main": [
+        [
+          {
+            "node": "Send Telegram Alert",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Find Sheet File",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Find Sheet File": {
+      "main": [
+        [
+          {
+            "node": "Check if Sheet Exists",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Check if Sheet Exists": {
+      "main": [
+        [
+          {
+            "node": "Append Row to Sheet",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Create Sheet if Missing",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Create Sheet if Missing": {
+      "main": [
+        [
+          {
+            "node": "Append Row",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Telegram: Listen for Commands": {
+      "main": [
+        [
+          {
+            "node": "Parse Telegram Command",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Parse Telegram Command": {
+      "main": [
+        [
+          {
+            "node": "IF /ask Command",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "IF /last Command",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "IF Unknown Command",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "IF /ask Command": {
+      "main": [
+        [
+          {
+            "node": "LLM Ask → /rag/ask",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "LLM Ask → /rag/ask": {
+      "main": [
+        [
+          {
+            "node": "Reply with Answer",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "IF /last Command": {
+      "main": [
+        [
+          {
+            "node": "Fetch Last Logged Event",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "IF Unknown Command": {
+      "main": [
+        [
+          {
+            "node": "Reply: Unknown Command",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Fetch Last Logged Event": {
+      "main": [
+        [
+          {
+            "node": "Format Event Summary",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Format Event Summary": {
+      "main": [
+        [
+          {
+            "node": "Reply with Last Event",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Schedule: Refresh Index (Every 6h)": {
+      "main": [
+        [
+          {
+            "node": "Get Latest Data from Google Drive",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Latest Data from Google Drive": {
+      "main": [
+        [
+          {
+            "node": "Rebuild RAG Index",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "b56fe804-1da8-4e82-98f9-73e7db231af1",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "e6ea64ca1c85a6c286470fa09705e178b654d0b4c6283fd45391bf151660cddc"
+  },
+  "id": "2212hlbZNFxF10TN",
+  "tags": []
+}
