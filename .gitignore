@@ -24,9 +24,13 @@ runs/
 # === Dane wyjściowe i tymczasowe ===
 *.csv
 *.json
+!n8n/WorkflowLastVesrion.json
 *.log
 *.tmp
 *.bak
+*.index
+*.pkl
+*.pickle
 
 # === Notebook checkpoints ===
 .ipynb_checkpoints/

@@ -5,11 +5,13 @@ import torch
 from src.mapping.sector_mapper import map_to_sector
 from src.llm.llm_client import analyze_event
 from src.rss.rss_fetcher import fetch_all_rss, rss_dict
+from src.api.rag_router import router as rag_router 
 
 import os
 app = FastAPI()
 
-
+# dodatkowy router
+app.include_router(rag_router, prefix="/rag")
 
 @app.get("/rss/fetch")
 def fetch_articles() -> list[dict]:

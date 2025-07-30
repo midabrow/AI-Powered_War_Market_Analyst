@@ -9,4 +9,8 @@ WORKDIR /app
 COPY ./requirements.txt /app/requirements.txt
 RUN pip install --no-cache-dir -r requirements.txt
 
+COPY . /app
+COPY data/faiss_store.pkl /app/data/faiss_store.pkl
+
+
 CMD ["uvicorn", "src.api.tagger:app", "--host", "0.0.0.0", "--port", "8000", "--reload"]
