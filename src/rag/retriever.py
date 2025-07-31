@@ -1,23 +1,21 @@
 # src/rag/retriever.py
-from sentence_transformers import SentenceTransformer
+
 import faiss
 import pickle
 import numpy as np
-import os
+import pandas as pd
+from sentence_transformers import SentenceTransformer
+from .settings import MODEL_NAME, INDEX_PATH, STORE_PATH
 
+class Retriever:
+    def __init__(self, model_name: str = MODEL_NAME, index_path: str = INDEX_PATH, store_path: str = STORE_PATH):
+        self.model = SentenceTransformer(model_name)
+        self.index = faiss.read_index(index_path)
 
+        with open(store_path, "rb") as f:
+            self.df = pickle.load(f)
 
-FAISS_INDEX_PATH = "/app/data/faiss_store.index"
-
-VECTOR_STORE_PATH = "/app/data/faiss_store.pkl"
-
-def retrieve_context(question: str, k: int = 5):
-    model = SentenceTransformer("all-MiniLM-L6-v2")
-    question_vec = model.encode([question])
-
-    index = faiss.read_index(FAISS_INDEX_PATH)
-    with open(VECTOR_STORE_PATH, "rb") as f:
-        df = pickle.load(f)
-
-    distances, indices = index.search(np.array(question_vec), k)
-    return df.iloc[indices[0]]
+    def retrieve(self, question: str, k: int = 5) -> pd.DataFrame:
+        query_vec = self.model.encode([question])
+        distances, indices = self.index.search(np.array(query_vec), k)
+        return self.df.iloc[indices[0]]

@@ -1,18 +1,29 @@
-def map_to_sector(title: str, tag: str) -> str:
-    """
-    Maps a classified event to an economic sector.
-    """
+# src/mapping/sector_mapper.py
 
-    title = title.lower()
-    tag = tag.lower()
+from typing import Callable
 
-    if "oil" in title or "gas" in title or "iran" in title or "saudi" in title or tag == "sanction":
-        return "energy"
-    if "ukraine" in title or "russia" in title or "army" in title or tag == "attack":
-        return "defense"
-    if "chip" in title or "semiconductor" in title or "china" in title or tag == "supply":
-        return "tech"
-    if "inflation" in title or "market" in title or tag == "incident":
-        return "finance"
 
-    return "global"
+class SectorRule:
+    def __init__(self, name: str, condition: Callable[[str, str], bool]):
+        self.name = name
+        self.condition = condition
+
+
+class SectorMapper:
+    def __init__(self):
+        self.rules = [
+            SectorRule("energy", lambda title, tag: any(x in title for x in ["oil", "gas", "iran", "saudi"]) or tag == "sanction"),
+            SectorRule("defense", lambda title, tag: any(x in title for x in ["ukraine", "russia", "army"]) or tag == "attack"),
+            SectorRule("tech", lambda title, tag: any(x in title for x in ["chip", "semiconductor", "china"]) or tag == "supply"),
+            SectorRule("finance", lambda title, tag: any(x in title for x in ["inflation", "market"]) or tag == "incident"),
+        ]
+
+    def map(self, title: str, tag: str) -> str:
+        title = title.lower()
+        tag = tag.lower()
+
+        for rule in self.rules:
+            if rule.condition(title, tag):
+                return rule.name
+
+        return "global"

@@ -1,7 +1,10 @@
-import os
-from dotenv import load_dotenv
-from src.llm import LLMClient
+from fastapi import FastAPI
+from src.api import rss_fetcher, classifier, sector_mapper, analyzer, rag
 
-load_dotenv()
-api_key = os.getenv("OPENROUTER_API_KEY")
-llm_client = LLMClient(api_key)
+app = FastAPI()
+
+app.include_router(rss_fetcher.router)
+app.include_router(classifier.router)
+app.include_router(sector_mapper.router)
+app.include_router(analyzer.router)
+app.include_router(rag.router)

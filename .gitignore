@@ -7,11 +7,11 @@ __pycache__/
 /data/transformer_model/
 !data/transformer_model/README.md 
 
-# === Pliki modeli HF ===
+# === HuggingFace model files ===
 *.safetensors
 *.bin
 
-# === Tokenizer / vocab ===
+# === Tokenizer / vocabulary files ===
 vocab.txt
 tokenizer_config.json
 tokenizer.json
@@ -21,7 +21,7 @@ special_tokens_map.json
 training_args.bin
 runs/
 
-# === Dane wyjściowe i tymczasowe ===
+# === Output and temporary data ===
 *.csv
 *.json
 !n8n/*.json
@@ -35,12 +35,12 @@ runs/
 # === Notebook checkpoints ===
 .ipynb_checkpoints/
 
-# === Systemowe ===
+# === System files ===
 .DS_Store
 Thumbs.db
 
-# === VS Code ===
+# === VS Code settings ===
 .vscode/
 
-# pliki konfiguracyjne
+# Configuration files
 .env
