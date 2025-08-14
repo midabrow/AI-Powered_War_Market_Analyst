@@ -9,7 +9,7 @@
 
 ### 🌎 Opis projektu
 
-Agent codziennie monitoruje wydarzenia wojskowe z kanałów **RSS Reutersa** i innych serwisów:
+Agent codziennie monitoruje wydarzenia wojskowe z kanałów **RSS** i innych serwisów:
 
 | **Serwis**            | **Link RSS**                                                      |
 | --------------------- | ----------------------------------------------------------------- |
@@ -37,7 +37,7 @@ System:
 
 ```
 
-project\_root/
+project_root/
 ├── data/                    # Dane: RSS, wektory, dane testowe
 ├── models/                  # Wytrenowany model Transformers
 ├── notebooks/               # Eksploracja danych, tagowanie, trening modelu
@@ -48,14 +48,14 @@ project\_root/
 │   ├── llm/                 # LLM Client (OpenRouter)
 │   ├── rag/                 # Komponenty Retrieval-Augmented Generation
 ├── n8n/                     # Backup i konfiguracja workflow
-├── tests/                  # Testy jednostkowe Pytest
+├── tests/                  # Testy jednostkowe Pytest [TODO]
 ├── Dockerfile              # Aplikacja główna
 ├── Dockerfile.test         # Obraz testowy
 ├── docker-compose.yml      # Orkiestracja usług
 ├── ngrok.yml               # Tunelowanie webhooków (np. Telegram)
 ├── requirements.txt        # Zależności produkcyjne
 ├── requirments-dev.txt     # Zależności developerskie (testy, black, mypy)
-└── streamlit_app.py        # (opcjonalnie) interfejs frontendowy
+└── streamlit_app.py        # interfejs frontendowy [TODO]
 
 ```
 
@@ -97,8 +97,8 @@ Zobacz dokumentację w [docs/pl/api_reference.md](docs/pl/api_reference.md)
 
 ### 🚪 Przykładowy przepływ
 
-1. Agent uruchamia się co 12h (n8n Trigger).
-2. Pobiera nowe artykuły z RSS Reutersa.
+1. Agent uruchamia się co 5h (n8n Trigger).
+2. Pobiera nowe artykuły z kanałów RSS.
 3. Każdy artykuł:
 
    * Klasyfikowany → `POST /classify`
@@ -128,7 +128,7 @@ Więcej: [docs/pl/llm.md](docs/pl/llm.md)
 
 ### 🌐 Project Description
 
-This agent monitors military news from **Reuters RSS** and other feeds:
+This agent monitors military news from **RSS** and other feeds:
 
 | **Website**            | **RSS Link**                                                      |
 | --------------------- | ----------------------------------------------------------------- |
@@ -217,9 +217,9 @@ See documentation at [docs/en/api_reference.md](docs/en/api_reference.md)
 
 ### 🚪 Example Flow
 
-1. The agent is triggered every 12 hours (n8n Trigger).
+1. The agent is triggered every 5 hours (n8n Trigger).
 
-2. It fetches new articles from Reuters RSS feeds.
+2. It fetches new articles from RSS feeds.
 
 3. Each article is:
 

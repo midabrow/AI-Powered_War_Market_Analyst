@@ -19,7 +19,10 @@
 {
   "title": "Ukraine attacked by drones",
   "summary": "Kyiv under fire",
-  "link": "http://example.com"
+  "link": "http://example.com",
+  "published": "...",
+  "source": "...",
+  "text": "..."
 }
 ```
 
@@ -36,7 +39,7 @@
 ```
 
 
-### POST /map\_sector
+### POST /map_sector
 
 **Description**: Maps an event to a relevant market sector
 
@@ -45,7 +48,10 @@
 ```json
 {
   "title": "Ukraine attacked by drones",
-  "tag": "attack"
+  "tag": "attack",
+  "confidence": 0.9743,
+  "summary": "...",
+  "link": "..."
 }
 ```
 
@@ -105,7 +111,7 @@
 
 **Description**: Builds a vector index from a CSV file
 
-#### Input: `multipart/form-data` with a CSV file
+#### Input: CSV file
 
 #### Output:
 
