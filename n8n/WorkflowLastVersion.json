@@ -30,9 +30,9 @@
       "typeVersion": 4.2,
       "position": [
         -592,
-        624
+        448
       ],
-      "id": "099feb50-3b99-49f7-9202-3e7315f233a0",
+      "id": "f77d4257-25c2-44f7-8d73-cec051c9f4f3",
       "name": "Classify Event Tag",
       "executeOnce": false
     },
@@ -46,10 +46,10 @@
       "type": "n8n-nodes-base.stickyNote",
       "position": [
         -1552,
-        544
+        368
       ],
       "typeVersion": 1,
-      "id": "b79ab12b-b9d0-41ac-8c5a-2629a5eeaa0d",
+      "id": "a8f25729-5178-4d23-b11c-210cff960747",
       "name": "Sticky Note"
     },
     {
@@ -62,10 +62,10 @@
       "type": "n8n-nodes-base.stickyNote",
       "position": [
         -656,
-        544
+        368
       ],
       "typeVersion": 1,
-      "id": "e2679e76-5b46-4cf7-b930-da7235096760",
+      "id": "ccd00367-45fe-4f2a-ba18-931c24b38337",
       "name": "Sticky Note1"
     },
     {
@@ -78,10 +78,10 @@
       "type": "n8n-nodes-base.stickyNote",
       "position": [
         0,
-        176
+        0
       ],
       "typeVersion": 1,
-      "id": "e7895593-0e28-415f-bef3-d1857afc4131",
+      "id": "f22c325b-706f-477b-ac72-494a6b020dff",
       "name": "Sticky Note2"
     },
     {
@@ -94,10 +94,10 @@
       "type": "n8n-nodes-base.stickyNote",
       "position": [
         0,
-        544
+        368
       ],
       "typeVersion": 1,
-      "id": "dc938310-ccf2-444d-98c2-958ce68c101a",
+      "id": "0e72fd65-375f-4a71-a703-c275077de80e",
       "name": "Sticky Note3"
     },
     {
@@ -107,12 +107,12 @@
         "width": 160,
         "color": 3
       },
-      "id": "f3e85d3d-5365-43a9-a273-e3d9c23a8d48",
+      "id": "11799557-c4b4-46de-970d-2b4217d9824f",
       "name": "Sticky Note19",
       "type": "n8n-nodes-base.stickyNote",
       "position": [
         -1344,
-        816
+        640
       ],
       "typeVersion": 1
     },
@@ -123,12 +123,12 @@
         "width": 160,
         "color": 3
       },
-      "id": "66cd61a3-b182-46ac-9648-15d4ae0754b8",
+      "id": "9cca282f-a4e0-44f9-bc56-be86fc1f09dd",
       "name": "Sticky Note20",
       "type": "n8n-nodes-base.stickyNote",
       "position": [
         -608,
-        816
+        640
       ],
       "typeVersion": 1
     },
@@ -139,12 +139,12 @@
         "width": 192,
         "color": 3
       },
-      "id": "5eed7bfc-7b97-4f95-b4fd-d2ffa117e0bc",
+      "id": "1ac714bd-6695-48ef-bd5b-c9b0a87652b2",
       "name": "Sticky Note21",
       "type": "n8n-nodes-base.stickyNote",
       "position": [
         96,
-        240
+        64
       ],
       "typeVersion": 1
     },
@@ -157,10 +157,10 @@
       "type": "n8n-nodes-base.stickyNote",
       "position": [
         -656,
-        960
+        784
       ],
       "typeVersion": 1,
-      "id": "439f3303-0700-4b54-8d71-9f7b7f949425",
+      "id": "14e62626-58b7-4ee7-8071-0a8ed2f09c3b",
       "name": "Sticky Note4"
     },
     {
@@ -172,9 +172,9 @@
       "typeVersion": 1,
       "position": [
         -896,
-        1872
+        1696
       ],
-      "id": "64fa2133-d4dc-486c-adc7-42a8b5586919"
+      "id": "a4836c2e-bf7a-4ac8-aed0-970a2acfbff7"
     },
     {
       "parameters": {
@@ -185,9 +185,9 @@
       "typeVersion": 1,
       "position": [
         -1120,
-        1872
+        1696
       ],
-      "id": "9958838b-88ce-4c46-aa6d-ee663dad3722"
+      "id": "6b610d15-c9e4-4969-8ac8-f8987c3b215b"
     },
     {
       "parameters": {
@@ -199,10 +199,10 @@
       "type": "n8n-nodes-base.stickyNote",
       "position": [
         -1552,
-        960
+        784
       ],
       "typeVersion": 1,
-      "id": "f448cd45-16f8-41c7-b063-847df3e3093c",
+      "id": "10d3e302-24d0-48b5-80ef-0f72c3085720",
       "name": "Sticky Note5"
     },
     {
@@ -220,9 +220,9 @@
       "typeVersion": 1.2,
       "position": [
         -1488,
-        640
+        464
       ],
-      "id": "10b3e11f-934a-49cd-b2e7-9956320b4351",
+      "id": "fdf090df-17e4-4c31-9ea6-0c28680dc518",
       "name": "Schedule: Every 5h Check"
     },
     {
@@ -234,9 +234,9 @@
       "typeVersion": 4.2,
       "position": [
         -1312,
-        640
+        464
       ],
-      "id": "4e831123-44cf-4995-b32f-01cb119a7a25",
+      "id": "43a707fb-4f19-41a8-b9ac-564a74fdfff9",
       "name": "Read RSS Feed"
     },
     {
@@ -247,9 +247,9 @@
       "typeVersion": 3,
       "position": [
         -1104,
-        640
+        464
       ],
-      "id": "512fad7e-8498-43ad-9c0c-a45efd4e59bc",
+      "id": "6606e7dc-d640-45d9-85f8-734a05d03ebd",
       "name": "Loop: Each News Item"
     },
     {
@@ -259,9 +259,9 @@
       "typeVersion": 1,
       "position": [
         -912,
-        656
+        480
       ],
-      "id": "fa11212b-9eb4-4eb8-9738-34f15aa5d676"
+      "id": "80e16db7-53ef-44f3-add4-a7f2d72fd8b0"
     },
     {
       "parameters": {
@@ -271,9 +271,9 @@
       "typeVersion": 2,
       "position": [
         -400,
-        624
+        448
       ],
-      "id": "d1bf2111-383a-4c8d-809c-1e0ae89f9077",
+      "id": "02b32b80-a0c7-4c58-a938-756bdfc65b9a",
       "name": "Filter: Is Alert-Worthy?"
     },
     {
@@ -299,9 +299,9 @@
       "typeVersion": 4.2,
       "position": [
         -208,
-        624
+        448
       ],
-      "id": "646d7163-0065-4b4d-80cc-45a2ff30a197",
+      "id": "52e57653-c8ec-4438-b6de-377947d82080",
       "name": "Classify Affected Sector",
       "executeOnce": false
     },
@@ -328,9 +328,9 @@
       "typeVersion": 4.2,
       "position": [
         128,
-        336
+        160
       ],
-      "id": "e1cd1574-5a23-4e5d-a85c-1ec4da2871c2",
+      "id": "fe84cf7f-4f29-4a7b-8eb5-b251d4602666",
       "name": "LLM: Analyze Event",
       "executeOnce": false
     },
@@ -344,14 +344,14 @@
       "typeVersion": 1.2,
       "position": [
         336,
-        336
+        160
       ],
-      "id": "c3e50863-6c14-4fe9-8c79-df850d9afa30",
+      "id": "9134b8f0-175b-41a7-af40-2a0f18ad577f",
       "name": "Send Telegram Alert",
       "webhookId": "fde9deba-745d-481f-831c-e70397c28a74",
       "credentials": {
         "telegramApi": {
-          "id": "SbidvwSqVpshZJge",
+          "id": "kpoorM1Vr0kBinUH",
           "name": "Telegram account"
         }
       }
@@ -367,14 +367,14 @@
       "typeVersion": 3,
       "position": [
         176,
-        640
+        464
       ],
-      "id": "affec0d7-f311-4943-87e4-74dba03730c7",
+      "id": "c520438c-ee6b-4a9b-80f3-215875b01b3d",
       "name": "Find Sheet File",
       "alwaysOutputData": true,
       "credentials": {
         "googleDriveOAuth2Api": {
-          "id": "gsDlL1JO3OoQPmmQ",
+          "id": "UH21xe0xzuZDws6X",
           "name": "Google Drive account"
         }
       }
@@ -408,9 +408,9 @@
       "typeVersion": 2.2,
       "position": [
         352,
-        640
+        464
       ],
-      "id": "df2a2ae2-9b9b-45e5-9b7a-f04119d15321",
+      "id": "1ee5141a-e038-43aa-a0cb-eef2002b56c3",
       "name": "Check if Sheet Exists"
     },
     {
@@ -497,13 +497,13 @@
       "typeVersion": 4.6,
       "position": [
         592,
-        624
+        448
       ],
-      "id": "dfef850b-3c56-4803-9c24-e4c360d4da9e",
+      "id": "f5272e1b-578e-46c1-9bad-26a2cec50e3b",
       "name": "Append Row to Sheet",
       "credentials": {
         "googleSheetsOAuth2Api": {
-          "id": "tZohwyAhpHyKPSJn",
+          "id": "2bOUS9MG8AwZT0Fm",
           "name": "Google Sheets account"
         }
       }
@@ -525,16 +525,10 @@
       "typeVersion": 4.6,
       "position": [
         592,
-        800
+        624
       ],
-      "id": "8738124d-1fdc-43da-8a86-521f350ef3bc",
-      "name": "Create Sheet if Missing",
-      "credentials": {
-        "googleSheetsOAuth2Api": {
-          "id": "tZohwyAhpHyKPSJn",
-          "name": "Google Sheets account"
-        }
-      }
+      "id": "af97767a-1a88-4266-bb82-433d7b850cd4",
+      "name": "Create Sheet if Missing"
     },
     {
       "parameters": {
@@ -620,16 +614,10 @@
       "typeVersion": 4.6,
       "position": [
         800,
-        800
+        624
       ],
-      "id": "eea2626d-d57a-4b97-a7d1-09f48358df7e",
-      "name": "Append Row",
-      "credentials": {
-        "googleSheetsOAuth2Api": {
-          "id": "tZohwyAhpHyKPSJn",
-          "name": "Google Sheets account"
-        }
-      }
+      "id": "de8ad58e-6e7b-4536-b668-5cf3aa56f4ca",
+      "name": "Append Row"
     },
     {
       "parameters": {
@@ -644,14 +632,14 @@
       "typeVersion": 1.2,
       "position": [
         -496,
-        1136
+        960
       ],
-      "id": "5683abdb-702f-45d4-9bd9-164f80912708",
+      "id": "019db180-787f-4234-85b1-5a6abb97d334",
       "name": "Telegram: Listen for Commands",
       "webhookId": "cc7c52a0-a370-4165-8576-86a62e96e5e9",
       "credentials": {
         "telegramApi": {
-          "id": "SbidvwSqVpshZJge",
+          "id": "kpoorM1Vr0kBinUH",
           "name": "Telegram account"
         }
       }
@@ -665,9 +653,9 @@
       "typeVersion": 2,
       "position": [
         -304,
-        1136
+        960
       ],
-      "id": "8cf04975-8155-46e0-8680-4142de0c92fe",
+      "id": "63ce702b-881a-49de-b7b6-eb14fa7a35fd",
       "name": "Parse Telegram Command"
     },
     {
@@ -699,9 +687,9 @@
       "typeVersion": 2.2,
       "position": [
         80,
-        1040
+        864
       ],
-      "id": "f74d6bbf-97a5-4951-8f98-03d59212a817",
+      "id": "67d6b702-5647-43d2-9ea6-f98844ceab66",
       "name": "IF /ask Command"
     },
     {
@@ -722,10 +710,10 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        288,
-        1024
+        304,
+        848
       ],
-      "id": "38674d88-c391-4b9b-befb-c99e6e8ef399",
+      "id": "37a06e61-bccf-4fef-bba1-57a4d34a556b",
       "name": "LLM Ask → /rag/ask"
     },
     {
@@ -738,14 +726,14 @@
       "typeVersion": 1.2,
       "position": [
         496,
-        1024
+        848
       ],
-      "id": "b4439426-d263-4018-9f28-ca06583ad90a",
+      "id": "125e81c0-1abb-48de-99e5-852d3d451951",
       "name": "Reply with Answer",
       "webhookId": "c8901973-e7eb-4068-beda-a4532ef98d4e",
       "credentials": {
         "telegramApi": {
-          "id": "SbidvwSqVpshZJge",
+          "id": "kpoorM1Vr0kBinUH",
           "name": "Telegram account"
         }
       }
@@ -779,9 +767,9 @@
       "typeVersion": 2.2,
       "position": [
         80,
-        1200
+        1024
       ],
-      "id": "2769d10a-7e0f-4ec6-bf81-4a145b204abd",
+      "id": "cf407f02-545e-4c0d-9398-593ce77f9eb2",
       "name": "IF /last Command"
     },
     {
@@ -813,9 +801,9 @@
       "typeVersion": 2.2,
       "position": [
         80,
-        1360
+        1184
       ],
-      "id": "a4acd739-66f2-423e-a960-d9a08a7e1dc0",
+      "id": "a1dc4ef0-b47c-4506-8747-307e33b3ee54",
       "name": "IF Unknown Command"
     },
     {
@@ -828,14 +816,14 @@
       "typeVersion": 1.2,
       "position": [
         304,
-        1344
+        1168
       ],
-      "id": "7615eb82-7855-4bfd-b7d4-0a93e07d6e0f",
+      "id": "efa3f5ac-e861-479d-a1fe-d05a3a137d20",
       "name": "Reply: Unknown Command",
       "webhookId": "c8901973-e7eb-4068-beda-a4532ef98d4e",
       "credentials": {
         "telegramApi": {
-          "id": "SbidvwSqVpshZJge",
+          "id": "kpoorM1Vr0kBinUH",
           "name": "Telegram account"
         }
       }
@@ -862,14 +850,14 @@
       "typeVersion": 4.6,
       "position": [
         304,
-        1184
+        1008
       ],
-      "id": "dd1c7369-1cd5-4191-b286-fb5f6cbf01b7",
+      "id": "cf393ba4-94db-4dda-9a9d-9e4a157ec647",
       "name": "Fetch Last Logged Event",
       "alwaysOutputData": true,
       "credentials": {
         "googleSheetsOAuth2Api": {
-          "id": "tZohwyAhpHyKPSJn",
+          "id": "2bOUS9MG8AwZT0Fm",
           "name": "Google Sheets account"
         }
       }
@@ -883,27 +871,29 @@
       "typeVersion": 2,
       "position": [
         496,
-        1184
+        1008
       ],
-      "id": "93d77ba0-3971-424d-9fb5-c0d1fb48a5c1",
+      "id": "394e5d84-ec5a-44c5-ad5f-8a85d560a412",
       "name": "Format Event Summary"
     },
     {
       "parameters": {
+        "chatId": "7807262429",
+        "text": "=📌 Title: {{ $('Fetch Last Logged Event').item.json.title }}\n\n📊 Analysis:\n{{ $('Fetch Last Logged Event').item.json.analysis }}",
         "additionalFields": {}
       },
       "type": "n8n-nodes-base.telegram",
       "typeVersion": 1.2,
       "position": [
         672,
-        1184
+        1008
       ],
-      "id": "45e83afa-7ac6-4bc8-9ba8-45081060c79e",
+      "id": "96883a2c-666f-4742-a405-0f7b5734bc15",
       "name": "Reply with Last Event",
       "webhookId": "00a54b34-7be5-4500-8081-596ed086376e",
       "credentials": {
         "telegramApi": {
-          "id": "SbidvwSqVpshZJge",
+          "id": "kpoorM1Vr0kBinUH",
           "name": "Telegram account"
         }
       }
@@ -923,9 +913,9 @@
       "typeVersion": 1.2,
       "position": [
         -1392,
-        1040
+        864
       ],
-      "id": "6ddfa2f3-6702-4de3-b215-a1d0b49d86ad",
+      "id": "262c532d-f0b3-4943-a3e4-4bb40ea8bd14",
       "name": "Schedule: Refresh Index (Every 6h)"
     },
     {
@@ -948,13 +938,13 @@
       "typeVersion": 3,
       "position": [
         -1200,
-        1040
+        864
       ],
-      "id": "b68a6efa-49e5-4104-b0f8-597652f52338",
+      "id": "d61cda66-aef0-4aa4-ac64-2730acfdb014",
       "name": "Get Latest Data from Google Drive",
       "credentials": {
         "googleDriveOAuth2Api": {
-          "id": "gsDlL1JO3OoQPmmQ",
+          "id": "UH21xe0xzuZDws6X",
           "name": "Google Drive account"
         }
       }
@@ -980,9 +970,9 @@
       "typeVersion": 4.2,
       "position": [
         -992,
-        1040
+        864
       ],
-      "id": "89982bf0-38d9-4967-89f1-5af5090219dd",
+      "id": "84c73831-9e2e-4980-aab5-e6a865412932",
       "name": "Rebuild RAG Index"
     }
   ],
@@ -1264,11 +1254,10 @@
   "settings": {
     "executionOrder": "v1"
   },
-  "versionId": "b56fe804-1da8-4e82-98f9-73e7db231af1",
+  "versionId": "8e68ea13-a257-46dd-a600-a196a32ce6e5",
   "meta": {
-    "templateCredsSetupCompleted": true,
     "instanceId": "e6ea64ca1c85a6c286470fa09705e178b654d0b4c6283fd45391bf151660cddc"
   },
-  "id": "2212hlbZNFxF10TN",
+  "id": "iLiwUVRtM7JDkBin",
   "tags": []
 }

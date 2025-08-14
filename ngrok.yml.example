@@ -1,0 +1,6 @@
+version: "2"
+tunnels:
+  n8n-tunnel:
+    proto: http
+    addr: n8n:5678
+    hostname: helping-capital-chicken.ngrok-free.app
